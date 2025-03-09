@@ -3,12 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <title>Formulir Keluhan</title>
 </head>
-<body class="bg-gray-100 p-5">
+<script>
+    let lastScrollTop = 0;
+    window.addEventListener("scroll", function () {
+    let navbar = document.getElementById("navbar");
+    let currentScroll = window.scrollY;
 
-    <div class="bg-white shadow-md rounded-lg p-6">
+    if (currentScroll > lastScrollTop) {
+        // Jika discroll ke bawah, tambahkan efek blur dan transparansi
+        navbar.classList.add("bg-white/30", "backdrop-blur-md", "shadow-lg");
+        navbar.classList.remove("bg-white");
+    } else if (currentScroll === 0) {
+        // Jika kembali ke atas, tetap putih
+        navbar.classList.remove("bg-white/30", "backdrop-blur-md", "shadow-lg");
+        navbar.classList.add("bg-white");
+    }
+
+    lastScrollTop = currentScroll;
+});
+</script>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="relative bg-white shadow-md p-4 flex justify-between items-center z-50">
+        <div class="flex items-center space-x-2">
+            <div class="bg-green-700 w-8 h-8 flex items-center justify-center rounded-full shadow">
+                <span class="text-white text-lg font-bold">L</span>
+            </div>
+            <h2 class="text-[#0c770c] text-lg font-bold">Lapor.in</h2>
+        </div>
+    
+        <!-- Navigasi Desktop -->
+        <ul class="hidden md:flex space-x-6">
+            <li><a href="Home.html" class="text-gray-600 font-semibold hover:text-teal-500">HOME</a></li>
+            <li><a href="About.html" class="text-gray-600 font-semibold hover:text-teal-500">ABOUT US</a></li>
+            <li><a href="Lapor.html" class="text-gray-600 font-semibold hover:text-teal-500">LAPOR</a></li>
+        </ul>
+    
+        <!-- Tombol Menu untuk HP -->
+        <button id="menu-toggle" class="md:hidden text-gray-600 text-2xl focus:outline-none">
+            ☰
+        </button>
+    </nav>
+    
+    <!-- Dropdown Menu (Hidden by Default) -->
+    <div id="dropdown-menu" class="hidden absolute top-16 right-4 w-48 bg-white shadow-md rounded-md z-50 md:hidden">
+        <ul class="flex flex-col space-y-2 px-4 py-2">
+            <li><a href="Home.html" class="block text-gray-600 font-semibold hover:text-teal-500">HOME</a></li>
+            <li><a href="About.html" class="block text-gray-600 font-semibold hover:text-teal-500">ABOUT US</a></li>
+            <li><a href="Lapor.html" class="block text-gray-600 font-semibold hover:text-teal-500">LAPOR</a></li>
+        </ul>
+    </div>
+    
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            let dropdown = document.getElementById("dropdown-menu");
+            dropdown.classList.toggle("hidden");
+        });
+        
+        </script>
+
+    
+    <!-- Konten Laporan -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-10 mt-4">
         <div class="flex items-center mb-4">
             <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
             <div>
@@ -49,6 +108,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>
